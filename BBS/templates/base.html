@@ -1,0 +1,58 @@
+<head>
+<title>BBS</title>
+<meta charset='utf-8'>
+</head>
+
+
+
+<h1>BBS</h1>
+{% block user%}
+{% if request.session.username %}
+welcome {{request.session.username}}<a href='/write/'>发帖</a><a href='/logout/'>退出</a> <a href='/bbs'>主页</a> 
+{% else %}
+<form method='post'action='/login/'>
+	<table>
+	<tr>
+		<td>用户名</td>
+		<td><input type='text' name='username' /></td>
+	</tr>
+	<tr>
+		<td>密码</td>
+		<td><input type='password' name='password' /></td>
+	</tr>
+	</table>
+	<input type='submit'value='登录'/>                <a href='/register'>注册</a>
+</form>
+{% endif %}
+{% endblock %}
+{% block body%}
+<div id='main'>
+<div id='title'>
+<table border=1 width=100% height=80%>  
+	<tr height=5%>
+		<td>
+			<a href='.'>最热</a>
+		</td>
+		<td>
+			<a href='.'>最新</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{% for i in notes %}
+		<a href='read/{{i.id}}/'>	{{i}}</a><br>
+		{{i.context}}</br>
+			{% endfor %}
+		</td>
+		<td>
+			{% for i in notes %}
+		<a href='read/{{i.id}}/'>	{{i}}</a><br>
+		{{i.context}}</br>
+			{% endfor %}
+		</td>
+	</tr>
+</table>  
+
+</div>
+</div>
+{% endblock %}
