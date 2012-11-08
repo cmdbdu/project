@@ -1,4 +1,5 @@
 # Create your views here.
+# -*- coding:utf-8 -*-
 from django.shortcuts import render_to_response
 from django.http import HttpResponse,HttpResponseRedirect
 import models
@@ -43,6 +44,8 @@ def logout(request):
 def login(request):
     if request.method=='POST':
         username = request.POST.get('username','')
+        if username == 'root':
+            return HttpResponse("不能以root用户登录<a href='http://127.0.0.1:8000/register'>注册新用户</a>,<a href='http://127.0.0.1:8000/bbs'>返回主页</a>")
         password=models.User.objects.get(username=username).password
         if password==request.POST.get('password',''):
             request.session['username']=username
