@@ -102,4 +102,6 @@ class Parse(Connect):
 
         except Exception, e:
             return "some  error about walk  here!"
+#example:
+#a = readmail.Parse('exampl@exampl.com','password','mailbox')
 
